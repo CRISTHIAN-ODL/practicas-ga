@@ -1,6 +1,10 @@
 name: Deploy
 
-on: push
+on: 
+  push:
+    branches:
+      - main
+      - stage
 
 
 jobs:
@@ -15,9 +19,11 @@ jobs:
         uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
-        
-      - name: Create file
-        run: ssh -o StrictHostKeyChecking=no azureuser@172.171.241.176 touch hola.txt
 
-      - name: Deploy to server
+      - name: Deploy to stage server
+        if: ${ github.ref == 'refs/heads/stage' }
+        run: bash deploy.sh
+
+      - name: Deploy to prod server
+        if: ${ github.ref == 'refs/heads/main' }
         run: bash deploy.sh
