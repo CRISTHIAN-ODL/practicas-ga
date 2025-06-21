@@ -7,7 +7,7 @@ else
 fi
 
 
-ssh -o StrictHostKeyChecking=no azureuser@4.227.181.213 <<HTML
+ssh -o StrictHostKeyChecking=no azureuser@172.171.241.176 <<HTML
 
   cd $DEPLOY_PATH
 
