@@ -17,3 +17,6 @@ jobs:
         
       - name: Create file
         run: ssh -o StrictHostKeyChecking=no azureuser@172.171.241.176 touch hola.txt
+
+      - name: Deploy to server
+        run: bash depoy.sh
